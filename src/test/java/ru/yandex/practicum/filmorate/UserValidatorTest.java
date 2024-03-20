@@ -17,6 +17,7 @@ public class UserValidatorTest {
                 LocalDate.of(2000,10,10));
         Assertions.assertEquals(true, UserValidator.validate(user));
     }
+
     
     @Test
     void addIncorrectEmailUserTest() {
