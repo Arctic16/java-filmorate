@@ -18,7 +18,6 @@ public class UserValidatorTest {
         Assertions.assertEquals(true, UserValidator.validate(user));
     }
 
-    
     @Test
     void addIncorrectEmailUserTest() {
         User user = new User(1,"adsasasda","Arct","",
