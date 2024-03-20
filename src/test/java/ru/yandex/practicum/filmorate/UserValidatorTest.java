@@ -18,7 +18,7 @@ public class UserValidatorTest {
         Assertions.assertEquals(true, UserValidator.validate(user));
     }
     @Test
-    void addIncorrectEmailUserTest(){
+    void addIncorrectEmailUserTest() {
         User user = new User(1,"adsasasda","Arct",""
                 , LocalDate.of(2000,10,10));
         ValidationException exception = Assertions.assertThrows(ValidationException.class
@@ -27,7 +27,7 @@ public class UserValidatorTest {
                 , exception.getMessage());
     }
     @Test
-    void addIncorrectBirthdayUserTest(){
+    void addIncorrectBirthdayUserTest() {
         User user = new User(1,"adsas@asda","Arct",""
                 , LocalDate.of(2100,10,10));
         ValidationException exception = Assertions.assertThrows(ValidationException.class
@@ -37,7 +37,7 @@ public class UserValidatorTest {
 
     }
     @Test
-    void addIncorrectLoginUserTest(){
+    void addIncorrectLoginUserTest() {
         User user1 = new User(1,"adsas@asda","Ar ct",""
                 , LocalDate.of(2000,10,10));
         User user2 = new User(1,"adsas@asda","",""
