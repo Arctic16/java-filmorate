@@ -18,17 +18,17 @@ public class FilmController {
     @PutMapping("/film")
     public Film addOrUpdateFilm(@RequestBody Film film) throws ValidationException {
         log.info("Получен PUT запрос.");
-        if(FilmValidator.validate(film)){
+        if (FilmValidator.validate(film)) {
             filmHashMap.put(film.getId(), film);
             log.info("Фильм добавлен или обновлён");
             return film;
-        }else {
+        } else {
             log.warn("Фильм не прошёл валидацию!");
             return null;
         }
     }
     @GetMapping("/films")
-    public List<Film> getFilms(){
+    public List<Film> getFilms() {
         log.info("Получен GET запрос.");
         return new ArrayList<>(filmHashMap.values());
     }

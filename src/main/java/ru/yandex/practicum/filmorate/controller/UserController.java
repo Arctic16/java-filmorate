@@ -21,21 +21,21 @@ public class UserController {
     @PutMapping("/user")
     public User addOrUpdateUser(@RequestBody User user) throws ValidationException {
         log.info("Получен PUT запрос.");
-        if(UserValidator.validate(user)){
-            if(user.getName().isBlank()){
+        if (UserValidator.validate(user)) {
+            if (user.getName().isBlank()) {
                 user.setName(user.getLogin());
             }
             log.info("Пользователь добавлен или обновлён");
             userHashMap.put(user.getId(), user);
             return user;
-        }else {
+        } else {
             log.warn("Пользователь не прошёл валидацию!");
             return null;
         }
     }
 
     @GetMapping("/users")
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         log.info("Получен GET запрос.");
         return new ArrayList<>(userHashMap.values());
     }
