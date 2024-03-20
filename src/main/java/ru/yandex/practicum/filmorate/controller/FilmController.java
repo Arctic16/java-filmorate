@@ -33,4 +33,7 @@ public class FilmController {
         log.info("Получен GET запрос.");
         return new ArrayList<>(filmHashMap.values());
     }
+
+
+
 }
