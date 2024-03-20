@@ -27,6 +27,19 @@ public class FilmController {
             return null;
         }
     }
+    
+    @PostMapping("/film")
+    public Film addFilm(@RequestBody Film film) throws ValidationException {
+        log.info("Получен POST запрос.");
+        if (FilmValidator.validate(film)) {
+            filmHashMap.put(film.getId(), film);
+            log.info("Фильм добавлен или обновлён!");
+            return film;
+        } else {
+            log.warn("Фильм не прошёл валидацию!");
+            return null;
+        }
+    }
 
     @GetMapping("/films")
     public List<Film> getFilms() {

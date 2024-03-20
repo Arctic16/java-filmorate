@@ -1,10 +1,7 @@
 package ru.yandex.practicum.filmorate.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.util.UserValidator;
@@ -21,6 +18,22 @@ public class UserController {
     @PutMapping("/user")
     public User addOrUpdateUser(@RequestBody User user) throws ValidationException {
         log.info("Получен PUT запрос.");
+        if (UserValidator.validate(user)) {
+            if (user.getName().isBlank()) {
+                user.setName(user.getLogin());
+            }
+            log.info("Пользователь добавлен или обновлён");
+            userHashMap.put(user.getId(), user);
+            return user;
+        } else {
+            log.warn("Пользователь не прошёл валидацию!");
+            return null;
+        }
+    }
+
+    @PostMapping("/user")
+    public User addUser(@RequestBody User user) throws ValidationException {
+        log.info("Получен POST запрос.");
         if (UserValidator.validate(user)) {
             if (user.getName().isBlank()) {
                 user.setName(user.getLogin());
