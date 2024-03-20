@@ -17,6 +17,7 @@ public class UserValidatorTest {
                 LocalDate.of(2000,10,10));
         Assertions.assertEquals(true, UserValidator.validate(user));
     }
+    
     @Test
     void addIncorrectEmailUserTest() {
         User user = new User(1,"adsasasda","Arct","",
@@ -26,6 +27,7 @@ public class UserValidatorTest {
         Assertions.assertEquals("Почта не может быть пустой и не содержать символа @ !",
                 exception.getMessage());
     }
+
     @Test
     void addIncorrectBirthdayUserTest() {
         User user = new User(1,"adsas@asda","Arct","",
@@ -36,6 +38,7 @@ public class UserValidatorTest {
                 exception.getMessage());
 
     }
+
     @Test
     void addIncorrectLoginUserTest() {
         User user1 = new User(1,"adsas@asda","Ar ct","",

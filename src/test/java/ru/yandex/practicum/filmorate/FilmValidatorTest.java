@@ -40,6 +40,7 @@ public class FilmValidatorTest {
         Assertions.assertEquals("Продолжительность фильма должна быть положительной!", exception.getMessage());
 
     }
+
     @Test
     void addIncorrectNameFilmTest() {
         Film film = new Film(1, "", "assdasdasd",
@@ -49,6 +50,7 @@ public class FilmValidatorTest {
         () -> FilmValidator.validate(film));
         Assertions.assertEquals("Название фильма не может быть пустым!", exception.getMessage());
     }
+
     @Test
     void addIncorrectDescriptionFilmTest() {
         Film film = new Film(1, "DDD", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n"
