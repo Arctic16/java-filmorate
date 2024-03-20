@@ -27,6 +27,7 @@ public class FilmController {
             return null;
         }
     }
+    
     @GetMapping("/films")
     public List<Film> getFilms() {
         log.info("Получен GET запрос.");
