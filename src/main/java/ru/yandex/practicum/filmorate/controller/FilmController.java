@@ -20,7 +20,7 @@ public class FilmController {
         log.info("Получен PUT запрос.");
         if (FilmValidator.validate(film)) {
             filmHashMap.put(film.getId(), film);
-            log.info("Фильм добавлен или обновлён");
+            log.info("Фильм добавлен или обновлён.");
             return film;
         } else {
             log.warn("Фильм не прошёл валидацию!");
