@@ -13,7 +13,7 @@ import java.util.List;
 @Slf4j
 public class UserController {
     private HashMap<Integer, User> userHashMap = new HashMap<>();
-    int id = 0;
+    int id = 1;
 
     @PutMapping("/users")
     public User updateUser(@RequestBody User user) {

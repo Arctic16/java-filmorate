@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.model.Film;
 import ru.yandex.practicum.filmorate.util.FilmValidator;
+
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,13 +14,14 @@ import java.util.List;
 @Slf4j
 public class FilmController {
     private HashMap<Integer, Film> filmHashMap = new HashMap<>();
-    private int id = 0;
+    private int id = 1;
 
 
     @PutMapping("/films")
     public Film updateFilm(@RequestBody Film film) {
         log.info("Получен PUT запрос.");
         if (FilmValidator.validate(film) && filmHashMap.containsKey(film.getId())) {
+            film.setDuration(Duration.ofMinutes(film.getDuration().getSeconds()));
             filmHashMap.put(film.getId(), film);
             log.info("Фильм обновлён!");
             return film;
@@ -34,6 +37,7 @@ public class FilmController {
         log.info("Получен POST запрос.");
         if (FilmValidator.validate(film)) {
             film.setId(id++);
+            film.setDuration(Duration.ofMinutes(film.getDuration().getSeconds()));
             filmHashMap.put(film.getId(), film);
             log.info("Фильм добавлен!");
             return film;
