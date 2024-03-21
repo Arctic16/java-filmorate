@@ -35,7 +35,7 @@ public class UserController {
     public User addUser(@RequestBody User user) {
         log.info("Получен POST запрос.");
         if (UserValidator.validate(user)) {
-            if (user.getName().isBlank()) {
+            if (user.getName().isBlank() || user.getName() == null) {
                 user.setName(user.getLogin());
             }
             log.info("Пользователь добавлен");
