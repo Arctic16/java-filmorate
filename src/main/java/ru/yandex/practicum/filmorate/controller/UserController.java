@@ -19,9 +19,6 @@ public class UserController {
     @PutMapping("/users")
     public User updateUser(@RequestBody User user) {
         log.info("Получен PUT запрос.");
-        if (!userHashMap.containsKey(user.getId())) {
-            throw new ValidationException("Пользователя с таким id не существует чтобы обновить");
-        }
         if (UserValidator.validate(user) && userHashMap.containsKey(user.getId())) {
             if (user.getName() == null) {
                 user.setName(user.getLogin());
