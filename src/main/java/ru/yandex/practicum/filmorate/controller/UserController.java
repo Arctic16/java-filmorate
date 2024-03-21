@@ -2,6 +2,7 @@ package ru.yandex.practicum.filmorate.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.util.UserValidator;
 
@@ -18,6 +19,9 @@ public class UserController {
     @PutMapping("/users")
     public User updateUser(@RequestBody User user) {
         log.info("Получен PUT запрос.");
+        if(!userHashMap.containsKey(user.getId())){
+            throw new ValidationException("Пользователя с таким id не существует чтобы обновить");
+        }
         if (UserValidator.validate(user) && userHashMap.containsKey(user.getId())) {
             if (user.getName() == null) {
                 user.setName(user.getLogin());

@@ -16,7 +16,7 @@ public class FilmValidatorTest {
     void addCorrectFilmTest() throws ValidationException {
         Film film = new Film(1, "Зеленая книга", "assdasdasd",
                 LocalDate.of(2000,10,10),
-                Duration.ofMinutes(130));
+                130);
         Assertions.assertTrue(FilmValidator.validate(film));
     }
 
@@ -24,7 +24,7 @@ public class FilmValidatorTest {
     void addIncorrectDateFilmTest() {
         Film film = new Film(1, "Зеленая книга", "assdasdasd",
                 LocalDate.of(1985,12,27),
-                Duration.ofMinutes(130));
+                130);
         ValidationException exception = Assertions.assertThrows(ValidationException.class,
                 () -> FilmValidator.validate(film));
         Assertions.assertEquals("Фильм не мог выйти раньше 28 декабря 1985 года!", exception.getMessage());
@@ -34,7 +34,7 @@ public class FilmValidatorTest {
     void addIncorrectDurationFilmTest() {
         Film film = new Film(1, "Зеленая книга", "assdasdasd",
                 LocalDate.of(2000,10,10),
-                Duration.ofMinutes(-130));
+                130);
         ValidationException exception = Assertions.assertThrows(ValidationException.class,
                 () -> FilmValidator.validate(film));
         Assertions.assertEquals("Продолжительность фильма должна быть положительной!", exception.getMessage());
@@ -45,7 +45,7 @@ public class FilmValidatorTest {
     void addIncorrectNameFilmTest() {
         Film film = new Film(1, "", "assdasdasd",
                 LocalDate.of(2000,10,10),
-                Duration.ofMinutes(130));
+                130);
         ValidationException exception = Assertions.assertThrows(ValidationException.class,
         () -> FilmValidator.validate(film));
         Assertions.assertEquals("Название фильма не может быть пустым!", exception.getMessage());
@@ -54,7 +54,7 @@ public class FilmValidatorTest {
     @Test
     void addIncorrectDescriptionFilmTest() {
         Film film = new Film(1, "DDD", "D".repeat(201),
-                LocalDate.of(2000,10,10), Duration.ofMinutes(130));
+                LocalDate.of(2000,10,10), 130);
         ValidationException exception = Assertions.assertThrows(ValidationException.class,
                 () -> FilmValidator.validate(film));
         Assertions.assertEquals("Описание фильма не может иметь длину более 200 символов!", exception.getMessage());

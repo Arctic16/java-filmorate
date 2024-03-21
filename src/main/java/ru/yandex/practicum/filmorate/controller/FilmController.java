@@ -21,7 +21,6 @@ public class FilmController {
     public Film updateFilm(@RequestBody Film film) {
         log.info("Получен PUT запрос.");
         if (FilmValidator.validate(film) && filmHashMap.containsKey(film.getId())) {
-            film.setDuration(Duration.ofMinutes(film.getDuration().getSeconds()));
             filmHashMap.put(film.getId(), film);
             log.info("Фильм обновлён!");
             return film;
@@ -37,7 +36,6 @@ public class FilmController {
         log.info("Получен POST запрос.");
         if (FilmValidator.validate(film)) {
             film.setId(id++);
-            film.setDuration(Duration.ofMinutes(film.getDuration().getSeconds()));
             filmHashMap.put(film.getId(), film);
             log.info("Фильм добавлен!");
             return film;
