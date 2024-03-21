@@ -25,7 +25,7 @@ public class FilmValidatorTest {
                 130);
         ValidationException exception = Assertions.assertThrows(ValidationException.class,
                 () -> FilmValidator.validate(film));
-        Assertions.assertEquals("Фильм не мог выйти раньше 28 декабря 1985 года!", exception.getMessage());
+        Assertions.assertEquals("Фильм не мог выйти раньше 28 декабря 1885 года!", exception.getMessage());
     }
 
     @Test
