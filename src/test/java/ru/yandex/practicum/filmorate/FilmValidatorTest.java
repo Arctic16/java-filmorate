@@ -32,7 +32,7 @@ public class FilmValidatorTest {
     void addIncorrectDurationFilmTest() {
         Film film = new Film(1, "Зеленая книга", "assdasdasd",
                 LocalDate.of(2000,10,10),
-                130);
+                -10);
         ValidationException exception = Assertions.assertThrows(ValidationException.class,
                 () -> FilmValidator.validate(film));
         Assertions.assertEquals("Продолжительность фильма должна быть положительной!", exception.getMessage());
