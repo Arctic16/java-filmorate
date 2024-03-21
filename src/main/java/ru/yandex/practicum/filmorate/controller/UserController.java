@@ -19,7 +19,9 @@ public class UserController {
     public User addOrUpdateUser(@RequestBody User user) {
         log.info("Получен PUT запрос.");
         if (UserValidator.validate(user)) {
-            if (user.getName().isBlank()) {
+            if (user.getName() == null) {
+                user.setName(user.getLogin());
+            }else if (user.getName().isBlank()) {
                 user.setName(user.getLogin());
             }
             log.info("Пользователь обновлён");
@@ -35,9 +37,12 @@ public class UserController {
     public User addUser(@RequestBody User user) {
         log.info("Получен POST запрос.");
         if (UserValidator.validate(user)) {
-            if (user.getName().isBlank() || user.getName() == null) {
+            if (user.getName() == null) {
+                user.setName(user.getLogin());
+            }else if (user.getName().isBlank()){
                 user.setName(user.getLogin());
             }
+
             log.info("Пользователь добавлен");
             user.setId(id++);
             userHashMap.put(user.getId(), user);
