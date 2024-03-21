@@ -13,16 +13,18 @@ import java.util.List;
 @RestController
 @Slf4j
 public class UserController {
-    HashMap<Integer, User> userHashMap = new HashMap<>();
+    private HashMap<Integer, User> userHashMap = new HashMap<>();
+    int id = 0;
 
     @PutMapping("/user")
-    public User addOrUpdateUser(@RequestBody User user) throws ValidationException {
+    public User addOrUpdateUser(@RequestBody User user) {
         log.info("Получен PUT запрос.");
         if (UserValidator.validate(user)) {
             if (user.getName().isBlank()) {
                 user.setName(user.getLogin());
             }
             log.info("Пользователь добавлен или обновлён");
+            user.setId(id++);
             userHashMap.put(user.getId(), user);
             return user;
         } else {
@@ -32,13 +34,14 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public User addUser(@RequestBody User user) throws ValidationException {
+    public User addUser(@RequestBody User user) {
         log.info("Получен POST запрос.");
         if (UserValidator.validate(user)) {
             if (user.getName().isBlank()) {
                 user.setName(user.getLogin());
             }
             log.info("Пользователь добавлен или обновлён");
+            user.setId(id++);
             userHashMap.put(user.getId(), user);
             return user;
         } else {
