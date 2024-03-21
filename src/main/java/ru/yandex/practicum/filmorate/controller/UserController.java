@@ -16,9 +16,9 @@ public class UserController {
     int id = 0;
 
     @PutMapping("/users")
-    public User addOrUpdateUser(@RequestBody User user) {
+    public User updateUser(@RequestBody User user) {
         log.info("Получен PUT запрос.");
-        if (UserValidator.validate(user)) {
+        if (UserValidator.validate(user) && userHashMap.containsKey(user.getId())) {
             if (user.getName() == null) {
                 user.setName(user.getLogin());
             } else if (user.getName().isBlank()) {
@@ -28,7 +28,7 @@ public class UserController {
             userHashMap.put(user.getId(), user);
             return user;
         } else {
-            log.warn("Пользователь не прошёл валидацию!");
+            log.warn("Пользователь не прошёл валидацию или его не существует чтобы обновить!");
             return null;
         }
     }

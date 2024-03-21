@@ -16,14 +16,14 @@ public class FilmController {
 
 
     @PutMapping("/films")
-    public Film addOrUpdateFilm(@RequestBody Film film) {
+    public Film updateFilm(@RequestBody Film film) {
         log.info("Получен PUT запрос.");
-        if (FilmValidator.validate(film)) {
+        if (FilmValidator.validate(film) && filmHashMap.containsKey(film.getId())) {
             filmHashMap.put(film.getId(), film);
             log.info("Фильм обновлён!");
             return film;
         } else {
-            log.warn("Фильм не прошёл валидацию!");
+            log.warn("Фильм не прошёл валидацию или его не существует чтобы обновить!");
             return null;
         }
     }
