@@ -19,9 +19,8 @@ public class FilmController {
     public Film addOrUpdateFilm(@RequestBody Film film) {
         log.info("Получен PUT запрос.");
         if (FilmValidator.validate(film)) {
-            film.setId(id++);
             filmHashMap.put(film.getId(), film);
-            log.info("Фильм добавлен или обновлён!");
+            log.info("Фильм обновлён!");
             return film;
         } else {
             log.warn("Фильм не прошёл валидацию!");
@@ -36,7 +35,7 @@ public class FilmController {
         if (FilmValidator.validate(film)) {
             film.setId(id++);
             filmHashMap.put(film.getId(), film);
-            log.info("Фильм добавлен или обновлён!");
+            log.info("Фильм добавлен!");
             return film;
         } else {
             log.warn("Фильм не прошёл валидацию!");

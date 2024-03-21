@@ -22,8 +22,7 @@ public class UserController {
             if (user.getName().isBlank()) {
                 user.setName(user.getLogin());
             }
-            log.info("Пользователь добавлен или обновлён");
-            user.setId(id++);
+            log.info("Пользователь обновлён");
             userHashMap.put(user.getId(), user);
             return user;
         } else {
@@ -39,7 +38,7 @@ public class UserController {
             if (user.getName().isBlank()) {
                 user.setName(user.getLogin());
             }
-            log.info("Пользователь добавлен или обновлён");
+            log.info("Пользователь добавлен");
             user.setId(id++);
             userHashMap.put(user.getId(), user);
             return user;
