@@ -21,11 +21,11 @@ public class FilmValidatorTest {
     @Test
     void addIncorrectDateFilmTest() {
         Film film = new Film(1, "Зеленая книга", "assdasdasd",
-                LocalDate.of(1885,12,27),
+                LocalDate.of(1895,12,27),
                 130);
         ValidationException exception = Assertions.assertThrows(ValidationException.class,
                 () -> FilmValidator.validate(film));
-        Assertions.assertEquals("Фильм не мог выйти раньше 28 декабря 1885 года!", exception.getMessage());
+        Assertions.assertEquals("Фильм не мог выйти раньше 28 декабря 1895 года!", exception.getMessage());
     }
 
     @Test
