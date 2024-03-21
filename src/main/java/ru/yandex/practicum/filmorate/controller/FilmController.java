@@ -28,7 +28,8 @@ public class FilmController {
             return null;
         }
     }
-    
+
+
     @PostMapping("/film")
     public Film addFilm(@RequestBody Film film) {
         log.info("Получен POST запрос.");
