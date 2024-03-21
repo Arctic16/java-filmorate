@@ -15,7 +15,7 @@ public class FilmController {
     private int id = 0;
 
 
-    @PutMapping("/film")
+    @PutMapping("/films")
     public Film addOrUpdateFilm(@RequestBody Film film) {
         log.info("Получен PUT запрос.");
         if (FilmValidator.validate(film)) {
@@ -30,7 +30,7 @@ public class FilmController {
     }
 
 
-    @PostMapping("/film")
+    @PostMapping("/films")
     public Film addFilm(@RequestBody Film film) {
         log.info("Получен POST запрос.");
         if (FilmValidator.validate(film)) {

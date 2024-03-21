@@ -15,7 +15,7 @@ public class UserController {
     private HashMap<Integer, User> userHashMap = new HashMap<>();
     int id = 0;
 
-    @PutMapping("/user")
+    @PutMapping("/users")
     public User addOrUpdateUser(@RequestBody User user) {
         log.info("Получен PUT запрос.");
         if (UserValidator.validate(user)) {
@@ -32,7 +32,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/user")
+    @PostMapping("/users")
     public User addUser(@RequestBody User user) {
         log.info("Получен POST запрос.");
         if (UserValidator.validate(user)) {
