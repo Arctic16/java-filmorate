@@ -12,8 +12,8 @@ public class FilmValidator {
         } else if (film.getDescription().length() > 200) {
             throw new ValidationException("Описание фильма не может иметь длину более 200 символов!");
         } else if (!film.getReleaseDate()
-                .isAfter(LocalDate.of(1985, 12, 27))) {
-            throw new ValidationException("Фильм не мог выйти раньше 28 декабря 1985 года!");
+                .isAfter(LocalDate.of(1885, 12, 27))) {
+            throw new ValidationException("Фильм не мог выйти раньше 28 декабря 1885 года!");
         } else if (film.getDuration() <= 0) {
             throw new ValidationException("Продолжительность фильма должна быть положительной!");
         } else {

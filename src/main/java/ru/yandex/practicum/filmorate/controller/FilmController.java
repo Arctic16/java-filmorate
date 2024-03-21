@@ -19,9 +19,9 @@ public class FilmController {
     @PutMapping("/films")
     public Film updateFilm(@RequestBody Film film) {
         log.info("Получен PUT запрос.");
-        if (!filmHashMap.containsKey(film.getId())) {
-            throw new ValidationException("Фильма с таким id не существует");
-        }
+//        if (!filmHashMap.containsKey(film.getId())) {
+//            throw new ValidationException("Фильма с таким id не существует");
+//        }
         if (FilmValidator.validate(film) && filmHashMap.containsKey(film.getId())) {
             filmHashMap.put(film.getId(), film);
             log.info("Фильм обновлён!");
