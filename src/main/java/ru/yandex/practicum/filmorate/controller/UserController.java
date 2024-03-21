@@ -21,7 +21,7 @@ public class UserController {
         if (UserValidator.validate(user)) {
             if (user.getName() == null) {
                 user.setName(user.getLogin());
-            }else if (user.getName().isBlank()) {
+            } else if (user.getName().isBlank()) {
                 user.setName(user.getLogin());
             }
             log.info("Пользователь обновлён");
@@ -39,7 +39,7 @@ public class UserController {
         if (UserValidator.validate(user)) {
             if (user.getName() == null) {
                 user.setName(user.getLogin());
-            }else if (user.getName().isBlank()){
+            } else if (user.getName().isBlank()) {
                 user.setName(user.getLogin());
             }
 
