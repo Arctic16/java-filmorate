@@ -9,7 +9,9 @@ import java.util.List;
 
 @Component
 public class InMemoryFilmStorage implements FilmStorage{
+
     private HashMap<Integer,Film> filmStorage = new HashMap<>();
+
     @Override
     public void addFilm(Film film) {
         filmStorage.put(film.getId(),film);
@@ -22,10 +24,11 @@ public class InMemoryFilmStorage implements FilmStorage{
 
     @Override
     public void updateFilm(Film film) {
-        if(filmStorage.containsKey(film.getId())){
+        if (filmStorage.containsKey(film.getId())) {
             filmStorage.put(film.getId(), film);
         }
     }
+
     @Override
     public Film getFilmById(int id) {
         if (filmStorage.containsKey(id)) {
@@ -34,6 +37,7 @@ public class InMemoryFilmStorage implements FilmStorage{
             throw new SearchException("Фильм с данным id не найден");
         }
     }
+    
     @Override
     public List<Film> getFilms() {
         return new ArrayList<>(filmStorage.values());
