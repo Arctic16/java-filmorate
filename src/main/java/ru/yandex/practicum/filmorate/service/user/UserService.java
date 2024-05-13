@@ -42,10 +42,14 @@ public class UserService {
         return friends;
     }
 
-    public Set<Integer> getCommonFriends(int user1Id, int user2Id) {
+    public List<User> getCommonFriends(int user1Id, int user2Id) {
+        List<User> users = new ArrayList<>();
         Set<Integer> common = new HashSet<>(userStorage.getUserById(user1Id).getFriends());
         common.retainAll(userStorage.getUserById(user2Id).getFriends());
-        return common;
+        for (int i : common) {
+            users.add(userStorage.getUserById(i));
+        }
+        return users;
     }
 
     public UserStorage getUserStorage() {
