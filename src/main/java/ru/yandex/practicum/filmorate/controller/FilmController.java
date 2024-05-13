@@ -61,28 +61,26 @@ public class FilmController {
     }
 
     @PutMapping("/films/{id}/like/{userId}")
-    public String addLike(@PathVariable int id, @PathVariable int userId) {
+    public void addLike(@PathVariable int id, @PathVariable int userId) {
         log.info("Получен PUT запрос на оценку фильма");
         if (filmService.getFilmStorage().getFilmById(id) != null
                 && userService.getUserStorage().getUserById(userId) != null) {
             filmService.addLike(userId,id);
             log.info("Фильм с id: " + id + " был оценён пользователем с id: " + userId);
-            return "Фильм успешно получил оценку!";
         } else {
-            return "Пользователь или фильм не найден!";
+            log.warn("Фильм или пользователь не найдены!");
         }
     }
 
     @DeleteMapping("/films/{id}/like/{userId}")
-    public String removeLike(@PathVariable int id, @PathVariable int userId) {
+    public void removeLike(@PathVariable int id, @PathVariable int userId) {
         log.info("Получен DELETE запрос на оценку фильма");
         if (filmService.getFilmStorage().getFilmById(id) != null
                 && userService.getUserStorage().getUserById(userId) != null) {
             filmService.removeLike(userId,id);
             log.info("Фильму с id: " + id + " была удалена оценка пользователем с id: " + userId);
-            return "Фильму была отменена оценка!";
         } else {
-            return "Пользователь или фильм не найден!";
+            log.warn("Фильм или пользователь не найдены!");
         }
     }
 

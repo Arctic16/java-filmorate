@@ -77,17 +77,15 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}/friends/{friendId}")
-    public String addFriends(@PathVariable Integer id, @PathVariable Integer friendId) {
+    public void addFriends(@PathVariable Integer id, @PathVariable Integer friendId) {
         log.info("Был получен запрос на добавление в друзья");
         userService.addFriends(id, friendId);
-        return "При наличии данных пользователей они были добавлены в друзья.";
     }
 
     @DeleteMapping("/users/{id}/friends/{friendId}")
-    public String deleteFriends(@PathVariable Integer id, @PathVariable Integer friendId) {
+    public void deleteFriends(@PathVariable Integer id, @PathVariable Integer friendId) {
         log.info("Был получен запрос на удаление из друзей");
         userService.removeFriends(id, friendId);
-        return "При наличии данных пользователей они были удалены из друзей.";
     }
 
     @GetMapping("/users/{id}/friends")
