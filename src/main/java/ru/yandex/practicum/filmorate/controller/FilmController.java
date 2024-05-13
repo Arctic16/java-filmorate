@@ -16,7 +16,7 @@ public class FilmController {
     private FilmService filmService;
 
     @Autowired
-    public FilmController(UserService userService, FilmService filmService){
+    public FilmController (UserService userService, FilmService filmService) {
         this.userService = userService;
         this.filmService = filmService;
     }
@@ -58,15 +58,15 @@ public class FilmController {
     }
 
     @GetMapping("/films/{id}")
-    public Film getFilmById(@PathVariable int id){
+    public Film getFilmById(@PathVariable int id) {
         return filmService.getFilmStorage().getFilmById(id);
     }
 
     @PutMapping("/films/{id}/like/{userId}")
     public String addLike(@PathVariable int id, @PathVariable int userId){
         log.info("Получен PUT запрос на оценку фильма");
-        if(filmService.getFilmStorage().getFilmById(id) != null
-                && userService.getUserStorage().getUserById(userId) != null){
+        if (filmService.getFilmStorage().getFilmById(id) != null
+                && userService.getUserStorage().getUserById(userId) != null) {
             filmService.addLike(userId,id);
             log.info("Фильм с id: " + id + " был оценён пользователем с id: " + userId );
             return "Фильм успешно получил оценку!";
@@ -77,10 +77,10 @@ public class FilmController {
     }
 
     @DeleteMapping("/films/{id}/like/{userId}")
-    public String removeLike(@PathVariable int id, @PathVariable int userId){
+    public String removeLike(@PathVariable int id, @PathVariable int userId) {
         log.info("Получен DELETE запрос на оценку фильма");
-        if(filmService.getFilmStorage().getFilmById(id) != null
-                && userService.getUserStorage().getUserById(userId) != null){
+        if (filmService.getFilmStorage().getFilmById(id) != null
+                && userService.getUserStorage().getUserById(userId) != null) {
             filmService.removeLike(userId,id);
             log.info("Фильму с id: " + id + " была удалена оценка пользователем с id: " + userId );
             return "Фильму была отменена оценка!";
@@ -91,7 +91,7 @@ public class FilmController {
     }
 
     @GetMapping("/films/popular")
-    public List<Film> getTopFilms(@RequestParam(required = false, defaultValue = "10") int count){
+    public List<Film> getTopFilms(@RequestParam(required = false, defaultValue = "10") int count) {
         log.info("Получен GET запрос топа фильмов");
         return filmService.getTopFilms(count);
     }
