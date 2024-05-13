@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Component
-public class InMemoryFilmStorage implements FilmStorage{
+public class InMemoryFilmStorage implements FilmStorage {
 
     private HashMap<Integer,Film> filmStorage = new HashMap<>();
 
