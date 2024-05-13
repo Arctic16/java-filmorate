@@ -22,22 +22,22 @@ public class InMemoryUserStorage implements UserStorage{
 
     @Override
     public void updateUser(User user) {
-        if(userStorage.containsKey(user.getId())){
+        if(userStorage.containsKey(user.getId())) {
             userStorage.put(user.getId(), user);
-        }else {
+        } else {
             throw new SearchException("Пользователь с таким id не найден!");
         }
     }
     @Override
-    public User getUserById(int id){
-        if(userStorage.containsKey(id)){
+    public User getUserById(int id) {
+        if(userStorage.containsKey(id)) {
             return userStorage.get(id);
-        }else{
+        } else {
             throw new SearchException("Пользователь с таким id не найден!");
         }
     }
     @Override
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         return new ArrayList<>(userStorage.values());
     }
 }

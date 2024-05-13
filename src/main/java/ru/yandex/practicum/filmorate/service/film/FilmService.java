@@ -13,29 +13,29 @@ public class FilmService {
     private final FilmStorage filmStorage;
 
     @Autowired
-    public FilmService(FilmStorage filmStorage){
+    public FilmService(FilmStorage filmStorage) {
         this.filmStorage = filmStorage;
     }
 
-    public void addLike(int userId, int filmId){
-        if(filmStorage.getFilmById(filmId) != null){
+    public void addLike(int userId, int filmId) {
+        if (filmStorage.getFilmById(filmId) != null) {
             filmStorage.getFilmById(filmId).getLikes().add(userId);
         }
     }
 
-    public void removeLike(int userId, int filmId){
-        if(filmStorage.getFilmById(filmId) != null){
+    public void removeLike(int userId, int filmId) {
+        if (filmStorage.getFilmById(filmId) != null) {
             filmStorage.getFilmById(filmId).getLikes().remove(userId);
         }
     }
 
-    public List<Film> getTopFilms(int count){
+    public List<Film> getTopFilms(int count) {
         List<Film> films = new ArrayList<>(filmStorage.getFilms());
         films.sort(Comparator.comparingInt((Film film) -> film.getLikes().size()).reversed());
         return films.subList(0, Math.min(count, films.size()));
     }
 
-    public FilmStorage getFilmStorage(){
+    public FilmStorage getFilmStorage() {
         return filmStorage;
     }
 }

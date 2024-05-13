@@ -68,39 +68,34 @@ public class UserController {
     }
 
     @GetMapping("user/{id}")
-    public User getUserById(@PathVariable Integer id){
+    public User getUserById(@PathVariable Integer id) {
         log.info("Был получен GET запрос пользователя по id.");
         return userService.getUserStorage().getUserById(id);
     }
 
     @PutMapping("/users/{id}/friends/{friendId}")
-    public String addFriends(@PathVariable Integer id, @PathVariable Integer friendId){
+    public String addFriends(@PathVariable Integer id, @PathVariable Integer friendId) {
         log.info("Был получен запрос на добавление в друзья");
         userService.addFriends(id, friendId);
         return "При наличии данных пользователей они были добавлены в друзья.";
     }
 
     @DeleteMapping("/users/{id}/friends/{friendId}")
-    public String deleteFriends(@PathVariable Integer id, @PathVariable Integer friendId){
+    public String deleteFriends(@PathVariable Integer id, @PathVariable Integer friendId) {
         log.info("Был получен запрос на удаление из друзей");
         userService.removeFriends(id, friendId);
         return "При наличии данных пользователей они были удалены из друзей.";
     }
 
     @GetMapping("/users/{id}/friends")
-    public Set<Integer> getFriends(@PathVariable Integer id){
+    public Set<Integer> getFriends(@PathVariable Integer id) {
         log.info("Получен GET запрос списка друзей");
         return userService.getFriends(id);
     }
 
     @GetMapping("/users/{id}/friends/common/{otherId}")
-    public Set<Integer> getCommonFriends(@PathVariable Integer id, @PathVariable Integer otherId){
+    public Set<Integer> getCommonFriends(@PathVariable Integer id, @PathVariable Integer otherId) {
         log.info("Получен GET запрос на список общих друзей");
         return userService.getCommonFriends(id, otherId);
     }
-
-
-
-
-
 }
