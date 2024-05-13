@@ -15,13 +15,13 @@ import java.util.Set;
 public class UserController {
     private UserService userService;
     private FilmService filmService;
+    private int id = 1;
 
     @Autowired
-    public UserController(UserService userService, FilmService filmService){
+    public UserController(UserService userService, FilmService filmService) {
         this.userService = userService;
         this.filmService = filmService;
     }
-    int id = 1;
 
     @PutMapping("/users")
     public User updateUser(@RequestBody User user) {

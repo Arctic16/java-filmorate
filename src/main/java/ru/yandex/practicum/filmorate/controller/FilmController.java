@@ -17,7 +17,7 @@ public class FilmController {
     private int id = 1;
 
     @Autowired
-    public FilmController (UserService userService, FilmService filmService) {
+    public FilmController(UserService userService, FilmService filmService) {
         this.userService = userService;
         this.filmService = filmService;
     }
@@ -61,7 +61,7 @@ public class FilmController {
     }
 
     @PutMapping("/films/{id}/like/{userId}")
-    public String addLike(@PathVariable int id, @PathVariable int userId){
+    public String addLike(@PathVariable int id, @PathVariable int userId) {
         log.info("Получен PUT запрос на оценку фильма");
         if (filmService.getFilmStorage().getFilmById(id) != null
                 && userService.getUserStorage().getUserById(userId) != null) {
