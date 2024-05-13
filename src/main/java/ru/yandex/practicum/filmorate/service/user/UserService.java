@@ -19,14 +19,14 @@ public class UserService {
     public void addFriends(int user1Id, int user2Id) {
         if (userStorage.getUserById(user1Id) != null && userStorage.getUserById(user2Id).getFriends() != null) {
             userStorage.getUserById(user1Id).getFriends().add(user2Id);
-            userStorage.getUserById(user2Id).getFriends().add(user1Id);
+            //userStorage.getUserById(user2Id).getFriends().add(user1Id);
         }
     }
 
     public void removeFriends(int user1Id, int user2Id) {
         if (userStorage.getUserById(user1Id) != null && userStorage.getUserById(user2Id).getFriends() != null) {
             userStorage.getUserById(user1Id).getFriends().remove(user2Id);
-            userStorage.getUserById(user2Id).getFriends().remove(user1Id);
+            //userStorage.getUserById(user2Id).getFriends().remove(user1Id);
         }
     }
 
