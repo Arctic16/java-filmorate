@@ -92,7 +92,7 @@ public class UserController {
 
     @GetMapping("/users/{id}/friends")
     public Set<Integer> getFriends(@PathVariable Integer id) {
-        log.info("Получен GET запрос списка друзей");
+        log.info("Получен GET запрос списка друзей.");
         return userService.getFriends(id);
     }
 
