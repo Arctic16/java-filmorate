@@ -14,14 +14,13 @@ import java.util.List;
 public class FilmController {
     private UserService userService;
     private FilmService filmService;
+    private int id = 1;
 
     @Autowired
     public FilmController (UserService userService, FilmService filmService) {
         this.userService = userService;
         this.filmService = filmService;
     }
-    private int id = 1;
-
 
     @PutMapping("/films")
     public Film updateFilm(@RequestBody Film film) {
@@ -35,7 +34,6 @@ public class FilmController {
             return null;
         }
     }
-
 
     @PostMapping("/films")
     public Film addFilm(@RequestBody Film film) {
@@ -70,8 +68,7 @@ public class FilmController {
             filmService.addLike(userId,id);
             log.info("Фильм с id: " + id + " был оценён пользователем с id: " + userId );
             return "Фильм успешно получил оценку!";
-        }
-        else {
+        } else {
             return "Пользователь или фильм не найден!";
         }
     }
@@ -84,8 +81,7 @@ public class FilmController {
             filmService.removeLike(userId,id);
             log.info("Фильму с id: " + id + " была удалена оценка пользователем с id: " + userId );
             return "Фильму была отменена оценка!";
-        }
-        else {
+        } else {
             return "Пользователь или фильм не найден!";
         }
     }
