@@ -37,7 +37,7 @@ public class InMemoryFilmStorage implements FilmStorage{
             throw new SearchException("Фильм с данным id не найден");
         }
     }
-    
+
     @Override
     public List<Film> getFilms() {
         return new ArrayList<>(filmStorage.values());
