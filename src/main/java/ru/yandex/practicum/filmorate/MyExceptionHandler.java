@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.client.ResponseErrorHandler;
 import ru.yandex.practicum.filmorate.exceptions.SearchException;
 import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 
