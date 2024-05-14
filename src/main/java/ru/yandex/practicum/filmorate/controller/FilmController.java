@@ -44,21 +44,21 @@ public class FilmController {
     }
 
     @PutMapping("/films/{id}/like/{userId}")
-    public String addLike(@PathVariable int id, @PathVariable int userId) {
+    public Film addLike(@PathVariable int id, @PathVariable int userId) {
         log.info("Получен PUT запрос на оценку фильма");
         filmService.addLike(userService.getUserById(userId).getId(), id);
         log.info("Фильм с id: " + id + " был оценён пользователем с id: " + userId);
 
-        return "Фильм успешно получил оценку!";
+        return getFilmById(id);
     }
 
     @DeleteMapping("/films/{id}/like/{userId}")
-    public String removeLike(@PathVariable int id, @PathVariable int userId) {
+    public Film removeLike(@PathVariable int id, @PathVariable int userId) {
         log.info("Получен DELETE запрос на оценку фильма");
         filmService.removeLike(userService.getUserById(userId).getId(), id);
         log.info("Фильму с id: " + id + " была удалена оценка пользователем с id: " + userId);
 
-        return "Фильму была удалена оценка!";
+        return getFilmById(id);
     }
 
     @GetMapping("/films/popular")
