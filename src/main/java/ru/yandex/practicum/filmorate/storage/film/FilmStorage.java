@@ -5,11 +5,11 @@ import java.util.List;
 
 public interface FilmStorage {
 
-    void addFilm(Film film);
+    Film addFilm(Film film);
 
     void removeFilm(int filmId);
 
-    void updateFilm(Film film);
+    Film updateFilm(Film film);
 
     Film getFilmById(int id);
 

@@ -14,7 +14,6 @@ import java.util.List;
 public class FilmController {
     private UserService userService;
     private FilmService filmService;
-    private int id = 1;
 
     @Autowired
     public FilmController(UserService userService, FilmService filmService) {
@@ -25,45 +24,30 @@ public class FilmController {
     @PutMapping("/films")
     public Film updateFilm(@RequestBody Film film) {
         log.info("Получен PUT запрос.");
-        if (FilmValidator.validate(film)) {
-            filmService.getFilmStorage().updateFilm(film);
-            log.info("Фильм обновлён!");
-            return film;
-        } else {
-            log.warn("Фильм не прошёл валидацию!");
-            return null;
-        }
+        return filmService.updateFilm(film);
     }
 
     @PostMapping("/films")
     public Film addFilm(@RequestBody Film film) {
         log.info("Получен POST запрос.");
-        if (FilmValidator.validate(film)) {
-            film.setId(id++);
-            filmService.getFilmStorage().addFilm(film);
-            log.info("Фильм добавлен!");
-            return film;
-        } else {
-            log.warn("Фильм не прошёл валидацию!");
-            return null;
-        }
+        return filmService.addFilm(film);
     }
 
     @GetMapping("/films")
     public List<Film> getFilms() {
         log.info("Получен GET запрос по списку фильмов.");
-        return filmService.getFilmStorage().getFilms();
+        return filmService.getFilms();
     }
 
     @GetMapping("/films/{id}")
     public Film getFilmById(@PathVariable int id) {
-        return filmService.getFilmStorage().getFilmById(id);
+        return filmService.getFilmById(id);
     }
 
     @PutMapping("/films/{id}/like/{userId}")
     public String addLike(@PathVariable int id, @PathVariable int userId) {
         log.info("Получен PUT запрос на оценку фильма");
-        filmService.addLike(userService.getUserStorage().getUserById(userId).getId(), id);
+        filmService.addLike(userService.getUserById(userId).getId(), id);
         log.info("Фильм с id: " + id + " был оценён пользователем с id: " + userId);
 
         return "Фильм успешно получил оценку!";
@@ -72,10 +56,10 @@ public class FilmController {
     @DeleteMapping("/films/{id}/like/{userId}")
     public String removeLike(@PathVariable int id, @PathVariable int userId) {
         log.info("Получен DELETE запрос на оценку фильма");
-        filmService.removeLike(userService.getUserStorage().getUserById(userId).getId(), id);
+        filmService.removeLike(userService.getUserById(userId).getId(), id);
         log.info("Фильму с id: " + id + " была удалена оценка пользователем с id: " + userId);
 
-        return "Фильм получил оценку!";
+        return "Фильму была удалена оценка!";
     }
 
     @GetMapping("/films/popular")

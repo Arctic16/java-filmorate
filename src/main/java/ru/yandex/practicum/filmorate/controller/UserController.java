@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.service.film.FilmService;
 import ru.yandex.practicum.filmorate.service.user.UserService;
-import ru.yandex.practicum.filmorate.util.UserValidator;
 import java.util.List;
 
 @RestController
@@ -16,7 +15,6 @@ public class UserController {
 
     private UserService userService;
     private FilmService filmService;
-    private int id = 1;
 
     @Autowired
     public UserController(UserService userService, FilmService filmService) {
@@ -27,51 +25,25 @@ public class UserController {
     @PutMapping("/users")
     public User updateUser(@RequestBody User user) {
         log.info("Получен PUT запрос.");
-        if (UserValidator.validate(user)) {
-            if (user.getName() == null) {
-                user.setName(user.getLogin());
-            } else if (user.getName().isBlank()) {
-                user.setName(user.getLogin());
-            }
-            userService.getUserStorage().updateUser(user);
-            log.info("Пользователь обновлён");
-            return user;
-        } else {
-            log.warn("Пользователь не прошёл валидацию или его не существует чтобы обновить!");
-            return null;
-        }
+        return userService.updateUser(user);
     }
 
     @PostMapping("/users")
     public User addUser(@RequestBody User user) {
         log.info("Получен POST запрос.");
-        if (UserValidator.validate(user)) {
-            if (user.getName() == null) {
-                user.setName(user.getLogin());
-            } else if (user.getName().isBlank()) {
-                user.setName(user.getLogin());
-            }
-
-            log.info("Пользователь добавлен");
-            user.setId(id++);
-            userService.getUserStorage().addUser(user);
-            return user;
-        } else {
-            log.warn("Пользователь не прошёл валидацию!");
-            return null;
-        }
+        return userService.addUser(user);
     }
 
     @GetMapping("/users")
     public List<User> getUsers() {
         log.info("Получен GET запрос по списку пользователей.");
-        return userService.getUserStorage().getUsers();
+        return userService.getUsers();
     }
 
     @GetMapping("users/{id}")
     public User getUserById(@PathVariable Integer id) {
         log.info("Был получен GET запрос пользователя по id.");
-        return userService.getUserStorage().getUserById(id);
+        return userService.getUserById(id);
     }
 
     @PutMapping("/users/{id}/friends/{friendId}")

@@ -1,15 +1,18 @@
 package ru.yandex.practicum.filmorate.service.user;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.storage.user.UserStorage;
+import ru.yandex.practicum.filmorate.util.UserValidator;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Slf4j
 @Service
 public class UserService {
 
@@ -54,5 +57,44 @@ public class UserService {
 
     public UserStorage getUserStorage() {
         return userStorage;
+    }
+
+    public User addUser(User user) {
+        if (UserValidator.validate(user)) {
+            if (user.getName() == null) {
+                user.setName(user.getLogin());
+            } else if (user.getName().isBlank()) {
+                user.setName(user.getLogin());
+            }
+
+            log.info("Пользователь добавлен");
+            return userStorage.addUser(user);
+
+        } else {
+            log.warn("Пользователь не прошёл валидацию!");
+            return null;
+        }
+    }
+
+    public User updateUser(User user) {
+        if (UserValidator.validate(user)) {
+            if (user.getName() == null) {
+                user.setName(user.getLogin());
+            } else if (user.getName().isBlank()) {
+                user.setName(user.getLogin());
+            }
+            return userStorage.updateUser(user);
+        } else {
+            log.warn("Пользователь не прошёл валидацию или его не существует чтобы обновить!");
+            return null;
+        }
+    }
+
+    public User getUserById(int id){
+        return userStorage.getUserById(id);
+    }
+
+    public List<User> getUsers(){
+        return userStorage.getUsers();
     }
 }
