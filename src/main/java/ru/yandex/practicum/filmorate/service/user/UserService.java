@@ -66,7 +66,6 @@ public class UserService {
             } else if (user.getName().isBlank()) {
                 user.setName(user.getLogin());
             }
-
             log.info("Пользователь добавлен");
             return userStorage.addUser(user);
 
@@ -90,11 +89,11 @@ public class UserService {
         }
     }
 
-    public User getUserById(int id){
+    public User getUserById(int id) {
         return userStorage.getUserById(id);
     }
 
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         return userStorage.getUsers();
     }
 }
